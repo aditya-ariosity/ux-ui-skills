@@ -5,6 +5,7 @@
   "type": "object",
   "required": ["product", "artifact_type", "critical_job", "scope", "facts", "assumptions", "decisions"],
   "properties": {
+    "$schema": {"type": "string"},
     "project_name": {"type": "string"},
     "product": {"type": "string", "minLength": 1},
     "artifact_type": {

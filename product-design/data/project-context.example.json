@@ -1,0 +1,67 @@
+{
+  "$schema": "./project-context.schema.json",
+  "project_name": "NovaCart Checkout Recovery",
+  "product": "NovaCart",
+  "artifact_type": "transactional-flow",
+  "platforms": ["responsive-web"],
+  "primary_users": [
+    {
+      "role": "Returning ecommerce customer",
+      "expertise": "mixed",
+      "context": "Completing checkout after reviewing cart, shipping, and payment details.",
+      "access_needs": ["keyboard operability", "clear error recovery"]
+    },
+    {
+      "role": "Support agent",
+      "expertise": "expert",
+      "context": "Helping customers resolve failed or uncertain payment attempts.",
+      "access_needs": []
+    }
+  ],
+  "critical_job": "Help customers complete payment with confidence when shipping, tax, or payment state changes during checkout.",
+  "outcome": "Reduce preventable checkout abandonment and support contacts caused by unclear totals, payment retries, or duplicate-order anxiety.",
+  "scope": {
+    "includes": [
+      "Cart review",
+      "Shipping method selection",
+      "Payment submission",
+      "Error and retry states",
+      "Order confirmation"
+    ],
+    "excludes": [
+      "Post-purchase returns",
+      "Warehouse fulfillment",
+      "Promotional campaign design"
+    ]
+  },
+  "risk_level": "high",
+  "decision_density": "moderate",
+  "locales": ["en"],
+  "constraints": [
+    "Do not claim backend idempotency from UI evidence alone.",
+    "Preserve existing payment provider requirements.",
+    "Use accessible form labels, focus handling, and error messaging."
+  ],
+  "facts": [
+    "The current checkout can update delivery cost after a shipping method is changed.",
+    "Users can retry payment after a failed authorization.",
+    "The interface shows a final payable amount before submission."
+  ],
+  "evidence": [
+    "One moderated recording shows a participant hesitating before retrying payment after an error.",
+    "Support notes mention customer uncertainty about whether a failed payment created an order."
+  ],
+  "assumptions": [
+    "Payment failures are recoverable without starting checkout again.",
+    "Order confirmation is the source of truth for completed purchase state."
+  ],
+  "open_questions": [
+    "Does the backend enforce idempotency for repeated payment submissions?",
+    "Which payment failure codes can be safely retried by the customer?",
+    "Are totals recalculated server-side immediately before authorization?"
+  ],
+  "decisions": [
+    "Treat payment retry and duplicate-charge anxiety as high-risk UX states.",
+    "Separate UI confidence cues from engineering guarantees in recommendations."
+  ]
+}

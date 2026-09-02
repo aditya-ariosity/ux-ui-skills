@@ -41,11 +41,19 @@ Record user decisions separately. Do not quietly replace them during later synth
 
 When the project needs continuity, validate and store the context as `design-context/project-context.json`. Keep research and design decisions in separate files so evidence is not overwritten by later preferences.
 
+Use `data/project-context.example.json` as the starting shape for a valid context file. Copy its structure, then replace the synthetic NovaCart content with the project's real facts, evidence, assumptions, open questions, and decisions.
+
 Resolve this skill's directory from its loaded `SKILL.md`, then validate before retrieval:
 
 ```bash
 SKILL_DIR="/absolute/path/to/product-design"
 python3 "$SKILL_DIR/scripts/validate_context.py" design-context/project-context.json
+```
+
+To test the schema before authoring a project file, run:
+
+```bash
+python3 "$SKILL_DIR/scripts/validate_context.py" "$SKILL_DIR/data/project-context.example.json"
 ```
 
 The retrieval command performs the same validation when `--context` is supplied. Invalid enums, unknown fields, missing required core fields, and malformed nested values must fail rather than being silently ignored.

@@ -3,11 +3,17 @@ name: Product design foundation
 on:
   push:
     paths:
+      - "*/SKILL.md"
+      - "*/references/**"
       - "product-design/**"
+      - ".github/scripts/lint_skill_pack.py"
       - ".github/workflows/product-design-foundation.yml"
   pull_request:
     paths:
+      - "*/SKILL.md"
+      - "*/references/**"
       - "product-design/**"
+      - ".github/scripts/lint_skill_pack.py"
       - ".github/workflows/product-design-foundation.yml"
 
 permissions:
@@ -21,8 +27,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Lint skill metadata and links
+        run: python3 .github/scripts/lint_skill_pack.py
       - name: Validate knowledge records
         run: python3 product-design/scripts/validate_data.py
+      - name: Validate example project context
+        run: python3 product-design/scripts/validate_context.py product-design/data/project-context.example.json
       - name: Run retrieval benchmark
         run: python3 product-design/scripts/evaluate.py
       - name: Run unit tests
