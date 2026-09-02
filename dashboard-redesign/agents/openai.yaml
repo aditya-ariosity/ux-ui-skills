@@ -1,0 +1,14 @@
+interface:
+  display_name: Dashboard Redesign
+  short_description: Redesign decision-centered data dashboards
+  default_prompt: Use $dashboard-redesign to improve this dashboard around user decisions,
+    data meaning, and implementation constraints.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

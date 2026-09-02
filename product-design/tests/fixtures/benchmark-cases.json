@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "note": "Anonymized regression cases derived from real product-design project types. Expected IDs encode design invariants, not preferred wording.",
+  "cases": [
+    {
+      "id": "global-energy-venture-dashboard",
+      "query": "Global ventures network dashboard with parent entities, subsidiary relationships, locations, drill-down, executive overview, and a light brand theme",
+      "context": {"artifact_type": "dashboard", "platforms": ["web"], "risk_level": "moderate", "critical_job": "Understand ownership relationships and move from global overview to venture detail", "constraints": ["light theme", "preserve network relationships"]},
+      "expected_any_top3": ["dashboard-start-from-decisions-not-kpis", "theme-from-context-not-industry"],
+      "forbidden_top3": ["public-site-authority-and-findability"]
+    },
+    {
+      "id": "sovereign-investment-public-site",
+      "query": "Redesign a bilingual sovereign investment authority website around transparency, governance, investments, publications, and public trust",
+      "context": {"artifact_type": "public-information-site", "platforms": ["responsive-web"], "risk_level": "high", "critical_job": "Find and trust authoritative institutional information", "constraints": ["bilingual", "accessible public content"]},
+      "expected_any_top3": ["public-site-authority-and-findability"],
+      "forbidden_top3": ["expert-tool-preserve-density-and-direct-manipulation"]
+    },
+    {
+      "id": "clinical-dosing-decision-support",
+      "query": "AI clinical dosing decision support that presents a recommendation and rationale before use, lets clinicians modify the dose and interval, and records the final choice",
+      "context": {"artifact_type": "safety-critical-system", "platforms": ["web"], "risk_level": "safety-critical", "critical_job": "Review, modify, and safely confirm a dosing recommendation", "constraints": ["clinician remains final decision maker", "traceability"]},
+      "expected_any_top3": ["safety-critical-review-override-traceability", "interaction-model-critical-states"],
+      "forbidden_top3": ["public-site-authority-and-findability"]
+    },
+    {
+      "id": "html-to-design-editor",
+      "query": "Desktop HTML-to-design editor with canvas selection, layer inspection, computed values, direct manipulation, shortcuts, undo, and interaction mode",
+      "context": {"artifact_type": "expert-tool", "platforms": ["desktop"], "risk_level": "moderate", "critical_job": "Inspect and edit imported interfaces without losing structure or interaction", "constraints": ["persistent selection", "high information density"]},
+      "expected_any_top3": ["expert-tool-preserve-density-and-direct-manipulation", "interaction-model-critical-states"],
+      "forbidden_top3": ["public-site-authority-and-findability"]
+    },
+    {
+      "id": "museum-human-capital-dashboard",
+      "query": "Human-capital dashboard with KPI summaries, employment-type comparison, filters, accessible charts, and Power BI implementation constraints",
+      "context": {"artifact_type": "dashboard", "platforms": ["web"], "risk_level": "moderate", "critical_job": "Compare workforce status and investigate changes", "constraints": ["Power BI", "brand colors only"]},
+      "expected_any_top3": ["dashboard-start-from-decisions-not-kpis"],
+      "forbidden_top3": ["public-site-authority-and-findability"]
+    },
+    {
+      "id": "competitive-research-decision",
+      "query": "Research competitor onboarding patterns to decide whether account creation belongs before or after users understand the product value",
+      "context": {"artifact_type": "transactional-flow", "platforms": ["responsive-web"], "risk_level": "moderate", "critical_job": "Decide the onboarding commitment point", "constraints": []},
+      "expected_any_top3": ["research-decision-first", "research-competitors-are-evidence-not-requirements"],
+      "forbidden_top3": ["theme-from-context-not-industry"]
+    },
+    {
+      "id": "distinctive-visual-direction",
+      "query": "Create a distinctive visual direction with a clear composition and brand-specific signature instead of a generic card grid and trend stack",
+      "context": {"artifact_type": "product-interface", "platforms": ["web"], "risk_level": "low", "critical_job": "Establish a coherent product-specific visual language", "constraints": []},
+      "expected_any_top3": ["visual-one-coherent-signature"],
+      "forbidden_top3": ["safety-critical-review-override-traceability"]
+    },
+    {
+      "id": "hard-negative-vague-preference",
+      "query": "Make it awesome and modern",
+      "context": {},
+      "expect_abstain": true
+    }
+  ]
+}

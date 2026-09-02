@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ariosity.com/schemas/product-design/knowledge.schema.json",
+  "title": "Product design knowledge record",
+  "type": "object",
+  "required": ["id", "domain", "title", "guidance", "rationale", "applies_when", "avoid_when", "artifact_types", "platforms", "risk_levels", "keywords", "evidence_class", "sources", "status", "confidence", "acceptance_checks"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "domain": {
+      "enum": ["research", "product-model", "information-architecture", "interaction", "visual-direction", "content", "accessibility", "data-visualization", "ai-experience", "trust", "implementation", "evaluation"]
+    },
+    "title": {"type": "string", "minLength": 3},
+    "guidance": {"type": "string", "minLength": 20},
+    "rationale": {"type": "string", "minLength": 20},
+    "applies_when": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "avoid_when": {"type": "array", "items": {"type": "string"}},
+    "artifact_types": {"type": "array", "items": {"type": "string"}},
+    "platforms": {"type": "array", "items": {"type": "string"}},
+    "risk_levels": {"type": "array", "items": {"type": "string"}},
+    "keywords": {"type": "array", "items": {"type": "string"}, "minItems": 2},
+    "required_evidence": {"type": "array", "items": {"type": "string"}},
+    "evidence_class": {"enum": ["normative", "empirical", "platform-guidance", "expert-synthesis", "product-precedent", "visual-inspiration"]},
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["title", "url"],
+        "properties": {
+          "title": {"type": "string"},
+          "url": {"type": "string", "pattern": "^https?://"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "verified_at": {"type": ["string", "null"], "format": "date"},
+    "status": {"enum": ["active", "seed-review", "deprecated", "rejected"]},
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "acceptance_checks": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "replacement_id": {"type": ["string", "null"]}
+  },
+  "additionalProperties": false
+}

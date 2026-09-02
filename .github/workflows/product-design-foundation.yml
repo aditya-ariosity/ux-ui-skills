@@ -1,0 +1,29 @@
+name: Product design foundation
+
+on:
+  push:
+    paths:
+      - "product-design/**"
+      - ".github/workflows/product-design-foundation.yml"
+  pull_request:
+    paths:
+      - "product-design/**"
+      - ".github/workflows/product-design-foundation.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate knowledge records
+        run: python3 product-design/scripts/validate_data.py
+      - name: Run retrieval benchmark
+        run: python3 product-design/scripts/evaluate.py
+      - name: Run unit tests
+        run: python3 -m unittest discover -s product-design/tests -p "test_*.py"

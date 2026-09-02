@@ -1,0 +1,8 @@
+interface:
+  display_name: "Product Design (Experimental)"
+  short_description: "Test the end-to-end design foundation"
+  brand_color: "#6D5EF5"
+  default_prompt: "Use $product-design to turn this product problem into a researched, coherent, and validated experience."
+
+policy:
+  allow_implicit_invocation: false

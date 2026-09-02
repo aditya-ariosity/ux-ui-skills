@@ -1,0 +1,14 @@
+interface:
+  display_name: AI Product Design
+  short_description: Design controllable, trustworthy AI experiences
+  default_prompt: Use $ai-product-design to design this AI feature with clear control,
+    recovery, trust, and evaluation.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

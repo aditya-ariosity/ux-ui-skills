@@ -1,0 +1,14 @@
+interface:
+  display_name: Case Study Writer
+  short_description: Turn design evidence into credible case studies
+  default_prompt: Use $case-study-writer to turn these project materials into a clear,
+    evidence-based portfolio case study.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

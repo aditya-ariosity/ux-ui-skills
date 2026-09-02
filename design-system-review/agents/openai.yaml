@@ -1,0 +1,14 @@
+interface:
+  display_name: Design System Review
+  short_description: Review tokens, components, states, and governance
+  default_prompt: Use $design-system-review to assess this design system and produce
+    a prioritized remediation plan.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

@@ -1,0 +1,14 @@
+interface:
+  display_name: Handoff to Development
+  short_description: Create build-ready design specifications
+  default_prompt: Use $handoff-to-dev to produce build-ready behavior, responsive,
+    accessibility, and acceptance specifications.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

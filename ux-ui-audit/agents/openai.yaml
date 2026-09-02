@@ -1,0 +1,14 @@
+interface:
+  display_name: UX/UI Audit
+  short_description: Run evidence-led product UX and UI audits
+  default_prompt: Use $ux-ui-audit to audit this product experience and return prioritized,
+    evidence-backed findings.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  allow_implicit_invocation: true
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas

@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ariosity.com/schemas/product-design/project-context.schema.json",
+  "title": "Product design project context",
+  "type": "object",
+  "required": ["product", "artifact_type", "critical_job", "scope", "facts", "assumptions", "decisions"],
+  "properties": {
+    "project_name": {"type": "string"},
+    "product": {"type": "string", "minLength": 1},
+    "artifact_type": {
+      "type": "string",
+      "enum": ["marketing-page", "public-information-site", "transactional-flow", "product-interface", "dashboard", "expert-tool", "safety-critical-system", "design-system", "other"]
+    },
+    "platforms": {
+      "type": "array",
+      "items": {"enum": ["web", "ios", "android", "desktop", "responsive-web", "cross-platform", "other"]},
+      "uniqueItems": true
+    },
+    "primary_users": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["role"],
+        "properties": {
+          "role": {"type": "string", "minLength": 1},
+          "expertise": {"enum": ["novice", "mixed", "expert", "unknown"]},
+          "context": {"type": "string"},
+          "access_needs": {"type": "array", "items": {"type": "string"}}
+        },
+        "additionalProperties": false
+      }
+    },
+    "critical_job": {"type": "string", "minLength": 1},
+    "outcome": {"type": "string"},
+    "scope": {
+      "type": "object",
+      "required": ["includes", "excludes"],
+      "properties": {
+        "includes": {"type": "array", "items": {"type": "string"}},
+        "excludes": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    },
+    "risk_level": {"enum": ["low", "moderate", "high", "safety-critical", "unknown"]},
+    "decision_density": {"enum": ["low", "moderate", "high", "unknown"]},
+    "locales": {"type": "array", "items": {"type": "string"}},
+    "constraints": {"type": "array", "items": {"type": "string"}},
+    "facts": {"type": "array", "items": {"type": "string"}},
+    "evidence": {"type": "array", "items": {"type": "string"}},
+    "assumptions": {"type": "array", "items": {"type": "string"}},
+    "open_questions": {"type": "array", "items": {"type": "string"}},
+    "decisions": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": false
+}
