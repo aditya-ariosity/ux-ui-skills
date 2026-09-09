@@ -1,7 +1,8 @@
 ---
 name: ux-ui-audit
-description: Audit an existing digital product artifact or flow and return evidence-backed, severity-calibrated findings. Trigger on "audit this", "critique this screen", "review this flow", or "find UX issues" when inspectable evidence is available. Use dashboard-redesign for dashboard redesigns and design-system-review for system-wide library reviews. Do not use for greenfield design.
+description: Audit or critique an existing digital product artifact or flow and return evidence-backed, severity-calibrated findings. Trigger on "audit this", "critique this screen", "review this flow", "usability review", "heuristic evaluation", or "find UX issues" when inspectable evidence is available. Use dashboard-redesign for dashboard redesigns and design-system-review for system-wide library reviews. Do not use for greenfield design.
 metadata:
+  version: "1.1.0"
   argument-hint: "[screenshots, URL, prototype, recording, or source files]"
 ---
 
@@ -69,13 +70,15 @@ Use the strongest available evidence:
 
 Label evidence quality using [references/evidence-and-severity.md](references/evidence-and-severity.md). Do not infer invisible behavior from a static screen. Test contrast with a tool, keyboard behavior with a keyboard, and semantics with an accessibility tree or equivalent inspection.
 
-When image annotation is available, number only the findings included in the report. Keep labels outside important content and map each number to one finding.
+For screenshot or recording audits, maintain an evidence register with `artifact/view -> state -> region or control -> evidence type -> observation`. When image annotation is available, number only the findings included in the report, keep labels outside important content, and map each number to one finding. If annotation is unavailable, identify the region precisely enough to relocate it without guessing.
 
 ## 3. Trace the critical task
 
 Map the journey as:
 
 `intent -> entry -> orientation -> decision -> action -> feedback -> recovery -> completion`
+
+For every Journey audit, include a compact journey map using the product's actual stages. Mark stages not present in the evidence as `unknown` rather than filling them in. Then use the critical-journey table to diagnose the consequential steps; the map establishes coverage, while the table carries evidence and severity.
 
 At each step, inspect:
 
@@ -114,6 +117,8 @@ Read [references/research-and-frameworks.md](references/research-and-frameworks.
 Read [references/accessibility-and-standards.md](references/accessibility-and-standards.md) for web, mobile, or accessibility-related work. Use WCAG 2.2 as the current conformance baseline for web content unless the user's jurisdiction or policy requires another standard. Treat WCAG 3 material as draft, not a conformance target.
 
 Read [references/ai-experience.md](references/ai-experience.md) only when AI, automation, recommendations, generation, prediction, or probabilistic behavior affects the experience.
+
+For AI audits, explicitly test provenance and user control: whether generated output is visibly and programmatically distinguishable from user-authored or verified content; whether consequential changes have an inspectable preview or diff; whether the original is preserved; and whether reject, undo, and recovery paths exist. Report an unavailable state as `Needs verification`, not as a pass.
 
 ## 5. Validate material uncertainty
 
@@ -177,9 +182,13 @@ Name the mode, artifact, platform, journey, viewports, evidence available, exclu
 
 Write no more than three bullets. State the dominant product-level problems, not a summary of every finding.
 
+### Journey map
+
+For Journey audits, show the actual observed path as a compact sequence. Label missing entry, recovery, or completion evidence as `unknown`.
+
 ### Critical journey
 
-For journey or release audits, show a compact table:
+For journey audits, first show the compact journey map required in step 3. For journey or release audits, then show a compact diagnostic table:
 
 `Step | User goal | Friction | Consequence | Severity`
 
@@ -201,6 +210,8 @@ Return 5 to 12 findings for normal audits. Use fewer when evidence is narrow. Us
 
 **Acceptance criteria:** A second submission is impossible while the request is pending; status is announced visually and programmatically; failure preserves inputs and exposes Retry without creating a duplicate charge.
 ```
+
+For a visual finding, start Evidence with a relocatable marker such as `[V2 | Checkout / Payment error | Pay control]`. Use the same marker on an annotation when one is available; do not invent coordinates or visual details that were not inspected.
 
 ### Accessibility
 
@@ -244,3 +255,5 @@ Before delivering, verify that:
 - the report is short enough to guide a decision;
 - cited guidance is matched to its evidence class and current version;
 - inspiration, cognitive laws, and editorial examples are not used as proof of user behavior.
+- Journey reports include an explicit map with unknown stages labeled;
+- AI reports verify distinction, inspection, recovery, and traceability without inferring unavailable system behavior.
