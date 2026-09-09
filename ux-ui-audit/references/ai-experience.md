@@ -116,6 +116,15 @@ For each AI finding, include the failure moment:
 - system error or uncertainty;
 - behavior over time.
 
+Also verify four control gates whenever generated content or AI-applied changes are in scope:
+
+1. **Distinction:** generated, retrieved, user-authored, and verified content can be told apart without relying on color alone, and the distinction is available to assistive technology where relevant.
+2. **Inspection:** the user can preview the affected object and inspect a meaningful diff before a consequential change is applied.
+3. **Recovery:** the original is preserved and reject, undo, or restore paths match the consequence of the change.
+4. **Traceability:** sources, inputs, scope, and uncertainty are exposed when they affect the user's decision.
+
+Do not infer that a gate exists from generic copy or an unavailable state. Mark it `Unknown` or place it in `Needs verification`, with the interaction or implementation evidence required to resolve it.
+
 ## Primary sources
 
 - [Microsoft HAX Guidelines for Human-AI Interaction](https://www.microsoft.com/en-us/haxtoolkit/ai-guidelines/)

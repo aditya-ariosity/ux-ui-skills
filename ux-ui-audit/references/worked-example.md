@@ -18,6 +18,12 @@ This is a synthetic demonstration of output quality. Its facts apply only to thi
 
 The prototype supports guest checkout and keeps the order summary visible, but payment feedback and recovery create avoidable transaction risk. Accessibility conformance cannot be determined from the supplied artifacts.
 
+### Journey map
+
+`Buy without account -> Cart review -> Delivery choice -> Payment entry -> Submit -> Error recovery -> Confirmation unknown`
+
+The recording covers cart review through a payment error. Successful confirmation was not supplied.
+
 ### Critical journey
 
 | Step | User goal | Observed friction | Consequence | Severity |

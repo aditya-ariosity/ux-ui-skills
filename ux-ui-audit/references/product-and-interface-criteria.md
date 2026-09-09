@@ -143,7 +143,17 @@ Inspect whether the interface supports the user's decisions rather than merely d
 - use the chart type that matches the comparison, trend, distribution, or composition;
 - show empty, partial, delayed, and unavailable data honestly.
 
-Do not turn every metric into a card. Do not use a chart when a number or compact table answers the question faster. Do not hide material variance behind averages.
+For each material visualization, identify the decision question and compare the current form against the simplest adequate alternative:
+
+| Decision question | Usually start with | Use a chart when |
+| --- | --- | --- |
+| What is the current value or status? | Number or status label | Change, threshold, or context is needed to interpret it |
+| Which items require action? | Ranked table or exception list | Shape or distribution changes the decision |
+| How has it changed over time? | Trend chart | The sequence and magnitude matter |
+| How do categories compare? | Sorted bars or compact table | Visual comparison is faster than exact lookup |
+| What is the exact value for many records? | Table | Overview plus detail is needed |
+
+State why the current form helps or hinders the scoped decision. Do not turn every metric into a card, reward a chart for decoration, or replace a useful visualization with a number when trend, distribution, or comparison is the task. Do not hide material variance behind averages.
 
 ## Design-system quality
 
