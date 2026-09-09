@@ -1,25 +1,20 @@
 ---
 name: handoff-to-dev
-description: Convert an approved UX/UI design or prototype into a build-ready behavior, component, responsive, state, accessibility, and acceptance specification. Trigger on "prepare developer handoff", "spec this design", or "write acceptance criteria". Do not use while the product model is still being redesigned or invent backend contracts.
+description: Specify, map, document, validate, and package an approved UX/UI design or prototype into build-ready behavior, component, responsive, state, accessibility, analytics, QA, and acceptance contracts. Trigger on "prepare developer handoff", "hand off to engineering", "create implementation specs", "spec this design", "document component behavior", or "write acceptance criteria". Do not use while the product model is still being redesigned or invent backend contracts.
 metadata:
+  version: "1.1.1-main"
   argument-hint: "[approved designs, prototype, system links, and platform constraints]"
 ---
 
 # Handoff to Development
 
-Handoff is a shared implementation contract, not a measurement dump. Specify intent, behavior, states, constraints, and verification so the team can build the experience without guessing or freezing the design into brittle pixels.
+Specify intent, behavior, states, constraints, and verification so implementation requires no hidden product decisions or arbitrary pixel matching.
 
 ## 1. Confirm readiness
 
 Collect:
 
-- approved flow, screens, prototype, and decision history;
-- target platforms, browsers, devices, locales, and input modes;
-- design-system components, tokens, code links, and version;
-- content source, data shape, ranges, permissions, and latency;
-- API or service behavior known to the team;
-- accessibility target and test environment;
-- analytics plan, release scope, feature flags, and rollout constraints.
+`Approved flow and decisions | Platforms, browsers, devices, locales, inputs | Components, tokens, code, versions | Content, data, permissions, latency, APIs | Accessibility target and test environment | Analytics, release, flags, rollout | Open decisions and owners`
 
 Label unresolved product, data, security, privacy, or technical decisions. Do not disguise them as visual annotations.
 
@@ -37,6 +32,8 @@ For every visible region identify:
 
 `Design object | Code component | Variant | Tokens | Content/data | Event | Owner | Gap`
 
+Synthetic example: `Address search | AddressAutocomplete | Default | semantic field tokens | Provider results | address_selected | Checkout | Timeout policy open`
+
 Use existing component and token names. Avoid raw pixel, color, and typography values when semantic tokens or layout constraints exist. Mark new components and variants explicitly; do not silently create one-off implementations.
 
 ## 4. Specify component behavior
@@ -44,6 +41,10 @@ Use existing component and token names. Avoid raw pixel, color, and typography v
 Read [references/implementation-contract.md](references/implementation-contract.md). Define anatomy, hierarchy, variants, states, interactions, semantics, content limits, responsiveness, and events. State intent and invariants before exact dimensions.
 
 Use measurements for fixed or bounded values only. For flexible layouts, specify container, grid, min/max, wrapping, truncation, overflow, intrinsic sizing, aspect ratio, alignment, and priority.
+
+Synthetic contract:
+
+`Component: AddressAutocomplete | Intent: accelerate entry without blocking manual input | Trigger: eligible address query | Loading: retain query and announce status | Error: preserve values and expose manual entry | Invariant: selecting a suggestion never submits the form`
 
 ## 5. Cover all states
 
@@ -55,13 +56,7 @@ Provide realistic fixtures for long labels, empty data, maximum values, errors, 
 
 Read [references/accessibility-qa-and-acceptance.md](references/accessibility-qa-and-acceptance.md). Define:
 
-- semantic element or platform control;
-- accessible name, role, state, value, and relationships;
-- heading and landmark structure;
-- keyboard model, focus order, focus entry and restoration;
-- error identification and status announcements;
-- contrast, target, zoom, reflow, text scaling, motion, and touch behavior;
-- accessible alternative for charts, drag, gestures, and complex widgets.
+`Control or region | Semantic element | Name, role, state, value | Relationships | Keyboard and focus | Errors and status | Contrast, target, reflow, scaling, motion, touch | Accessible alternative`
 
 Reference relevant WCAG 2.2 criteria for requirements, but do not claim conformance from the specification alone.
 
@@ -76,6 +71,8 @@ Define user-visible performance behavior: immediate acknowledgment, loading stra
 ## 8. Write acceptance criteria
 
 Use observable Given/When/Then statements or an equally testable format. Cover behavior, data, states, responsiveness, accessibility, instrumentation, and recovery. Avoid `matches design`, `looks correct`, or `works on mobile` as acceptance criteria.
+
+Synthetic example: `Given autocomplete is unavailable, when the user enters an address manually and submits, then checkout continues without retrying or enabling the provider.`
 
 ## 9. Produce the handoff package
 
@@ -113,13 +110,11 @@ Use:
 
 Name environments, viewports, content fixtures, assistive technologies, browsers, and high-risk checks. Record deviations as defects, approved tradeoffs, or design changes.
 
+**Checkpoint:** Trace every acceptance criterion back to approved evidence and forward to component, state, and QA coverage. Revise gaps, then repeat until each Quality-bar item passes or every unresolved decision has an owner and blocking status.
+
 ## Quality bar
 
-- the critical flow can be implemented without inferring hidden branches;
-- system components and tokens are named, not approximated;
-- content and data ranges shape the layout contract;
-- loading, empty, error, permission, and recovery states are specified;
-- responsive behavior uses constraints and priority, not device screenshots alone;
-- accessibility semantics and focus behavior are explicit;
-- acceptance criteria are observable;
-- unresolved decisions have owners and do not masquerade as implementation detail.
+- critical flows expose branches and recovery, and mappings name system components and tokens;
+- content ranges, consequential states, and responsive constraints define implementation behavior;
+- accessibility semantics, focus behavior, QA coverage, and acceptance criteria are explicit and observable;
+- unresolved decisions have owners and never masquerade as implementation detail.
