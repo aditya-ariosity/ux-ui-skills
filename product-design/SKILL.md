@@ -1,7 +1,8 @@
 ---
 name: product-design
-description: Experimental end-to-end product-design orchestrator for project context, research retrieval, experience modeling, visual direction, creation, and rendered validation. Invoke explicitly for foundation testing. Use the six stable specialist skills for audits, dashboards, AI features, design systems, handoff, and case studies.
+description: Experimental end-to-end product-design orchestrator that frames project context, retrieves research, models experience flows, defines visual direction, creates artifacts, and validates rendered outcomes. Use only when explicitly asked for "end-to-end product design", "design this feature end-to-end", "redesign this flow", "build an experience from this brief", or "create a product experience". Use the stable specialist skills for isolated audits, dashboards, AI features, design systems, handoff, or case studies.
 metadata:
+  version: "1.1.1-main"
   argument-hint: "[product brief, evidence, source files, or URL]"
 ---
 
@@ -22,7 +23,7 @@ Use this skill for end-to-end creation or redesign. For a narrow request, use th
 - approved-design specification: `handoff-to-dev`;
 - portfolio narrative: `case-study-writer`.
 
-Combine specialist skills only when their distinct output is required. Do not load the entire repository by default.
+Combine specialist skills only when their distinct output is required. Load only the repository resources needed for the task.
 
 ## 1. Establish project context
 
@@ -36,13 +37,20 @@ Distinguish:
 - unresolved assumptions;
 - decisions already made by the user.
 
-Do not replace the user's chosen direction merely because another direction is common. Ask only when a missing answer would materially change the result; otherwise state the assumption and continue.
+Preserve the user's chosen direction unless evidence or constraints invalidate it. Ask only when a missing answer would materially change the result; otherwise state the assumption and continue.
+
+Validate persisted context:
+
+```bash
+SKILL_DIR="/absolute/path/to/product-design"
+python3 "$SKILL_DIR/scripts/validate_context.py" "/absolute/path/to/project-context.json"
+```
 
 ## 2. Research for a decision
 
 Read [references/research-workflow.md](references/research-workflow.md) when current evidence, benchmarking, user research, market context, or precedent is needed.
 
-Start with the decision the research must change. Separate product evidence, standards, empirical research, expert guidance, competitor behavior, and visual inspiration. Current or consequential claims require current primary sources. Never convert competitor frequency into user need.
+Start with the decision the research must change. Separate product evidence, standards, empirical research, expert guidance, competitor behavior, and visual inspiration. Current or consequential claims require current primary sources. Competitor frequency is precedent, not user need.
 
 Research output must end in design implications, rejected assumptions, and remaining uncertainty—not a link inventory.
 
@@ -55,9 +63,15 @@ SKILL_DIR="/absolute/path/to/product-design"
 python3 "$SKILL_DIR/scripts/search.py" --query "<dominant design problem>" --context design-context/project-context.json --limit 5 --diagnostics
 ```
 
-Resolve `SKILL_DIR` from this skill's loaded `SKILL.md`; never assume the user's project is the skill directory. Omit `--context` when no persisted context exists. Use one dominant intent per query. Verify why each result applies. If the search abstains, do not force a weak match; use explicitly labeled general reasoning or gather missing context.
+Resolve `SKILL_DIR` from this skill's loaded `SKILL.md`; never assume the user's project is the skill directory. Omit `--context` when no persisted context exists. Use one dominant intent per query. Verify why each result applies. Accept abstention; use labeled general reasoning or gather missing context instead of forcing a weak match.
 
 The seed data is intentionally small. Read [references/knowledge-governance.md](references/knowledge-governance.md) before adding or importing records.
+
+Validate the knowledge file after changes:
+
+```bash
+python3 "$SKILL_DIR/scripts/validate_data.py"
+```
 
 ## 4. Model the experience
 
@@ -90,7 +104,7 @@ Commit to:
 - one recognisable signature element;
 - clichés and conflicting treatments to avoid.
 
-Do not derive an aesthetic from industry alone. Do not add cards, gradients, glass, dark mode, large headings, illustrations, or animation without a product or brand reason.
+**Constraint:** Industry alone does not determine aesthetics; cards, gradients, glass, dark mode, large headings, illustrations, and animation require a product or brand reason.
 
 ## 6. Create and inspect
 
@@ -98,7 +112,7 @@ Build at the fidelity requested. Preserve real content, interactions, data relat
 
 For implemented or interactive work, inspect the rendered result at relevant content breakpoints and critical states. Exercise the primary path with the intended input modes. Correct visible, interaction, accessibility, overflow, state, and console failures, then inspect again.
 
-Do not describe an interface as complete when only source code or a static ideal state was reviewed.
+Completion requires rendered inspection; source code or a static ideal state is insufficient.
 
 ## 7. Evaluate the outcome
 
@@ -124,18 +138,16 @@ Scale the output to the request. A complete engagement can include:
 6. rendered validation findings and corrections;
 7. unresolved questions and next validation step.
 
-Do not generate every artifact when a smaller result completes the user's task.
+Generate only the artifacts needed to complete the user's task.
 
 ## Quality gate
 
-Before delivery, confirm that:
+Before delivery, confirm:
 
-- research conclusions can be traced to evidence;
-- requirements, observations, inferences, and preferences are not mixed;
-- the product structure fits the actual artifact and user task;
-- the visual direction is coherent and not a stack of trends;
-- critical states and recovery paths exist;
-- accessibility claims match performed checks;
-- implemented work was inspected rather than inferred from code;
-- recommendations preserve valid user decisions and constraints;
-- no metric, user quote, behavior, or source was invented.
+- **Context and evidence (§1–3):** sources are traceable; facts, observations, inferences, preferences, and unknowns remain distinct; nothing is invented.
+- **Experience model (§4):** structure fits the task, with critical states, permissions, and recovery paths.
+- **Visual direction (§5):** choices follow the selected thesis and supplied product or brand rationale.
+- **Rendered result (§6):** critical paths, states, accessibility, overflow, interactions, and console behavior were inspected and corrected.
+- **Outcome (§7):** conclusions preserve valid user decisions, match performed checks, and identify remaining verification.
+
+If a check fails, return to its phase, correct the gap, and run the gate again.

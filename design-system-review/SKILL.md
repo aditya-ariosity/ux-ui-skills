@@ -1,7 +1,8 @@
 ---
 name: design-system-review
-description: Review a design system, token architecture, component library, Figma library, or Storybook for product-wide consistency, accessibility, adoption, and governance. Trigger on "audit our design system", "review these components", or "assess token drift". Use ux-ui-audit for a product screen or flow. Do not create a visual brand from scratch.
+description: Audit, diagnose, score, and recommend fixes for a design system, design tokens, token architecture, component library, Figma library, Storybook, or design-ops model. Evaluate product-wide consistency, accessibility, adoption, and governance. Trigger on "audit our design system", "review these components", "assess token drift", "review our design tokens", or "improve design ops". Use ux-ui-audit for a product screen or flow. Do not create a visual brand from scratch.
 metadata:
+  version: "1.1.0-main"
   argument-hint: "[library, tokens, Storybook, Figma, code, or product samples]"
 ---
 
@@ -27,25 +28,27 @@ Sample real product usage, not only pristine documentation. Create:
 
 `Pattern | Instances | Intended source | Observed variants | State gaps | Accessibility risk | Adoption signal | Owner`
 
+Synthetic example: `Button | 24 product instances | Shared component | Five colors; three focus treatments | Focus and loading | Missing focus | 17/24 use shared | UI platform`
+
 Trace representative components from semantic token to design asset to code to product. Record drift at the layer where it originates.
 
 ## 3. Review four layers
 
 ### Foundations and tokens
 
-Read [references/tokens-and-theming.md](references/tokens-and-theming.md). Inspect semantic naming, primitive separation, modes, themes, aliases, units, typography, motion, elevation, density, breakpoints, deprecation, and distribution.
+Read [references/tokens-and-theming.md](references/tokens-and-theming.md). Inspect semantic naming, primitive separation, themes and aliases, accessibility-critical typography and motion, deprecation, and distribution.
 
 ### Components and patterns
 
-Read [references/component-contract.md](references/component-contract.md). Inspect anatomy, variants, states, content, behavior, semantics, keyboard support, responsiveness, composition, APIs, escape hatches, and test coverage.
+Read [references/component-contract.md](references/component-contract.md). Inspect anatomy, variants, states, semantics, keyboard and responsive behavior, API boundaries, escape hatches, and test coverage.
 
 ### Documentation and tooling
 
-Inspect discoverability, examples with real content, do/don't rationale, design-code linkage, changelogs, migration guidance, release channels, and executable stories or tests.
+Inspect discoverability, realistic examples, rationale, design-code linkage, migration guidance, release notes, and executable stories or tests.
 
 ### Governance and adoption
 
-Read [references/governance-and-adoption.md](references/governance-and-adoption.md). Inspect ownership, contribution, decision rights, review service levels, versioning, deprecation, exception handling, support, usage measurement, and funding.
+Read [references/governance-and-adoption.md](references/governance-and-adoption.md). Inspect ownership, contribution and decision rights, release and deprecation, exceptions, support, adoption measures, and funding.
 
 ## 4. Diagnose causes, not counts
 
@@ -88,6 +91,8 @@ Use a table:
 
 `Layer | Health | Strong evidence | Main risk | Confidence`
 
+Synthetic example: `Semantic tokens | At risk | Token package and compiled themes | Products bypass semantic aliases | High`
+
 Avoid an unweighted score unless criteria and evidence support it.
 
 ### Prioritized findings
@@ -95,6 +100,8 @@ Avoid an unweighted score unless criteria and evidence support it.
 For each:
 
 `Evidence | Product impact | System cause | Recommended decision | Migration path | Acceptance criteria`
+
+Synthetic example: `Two wrappers suppress focus | Keyboard users lose location | Focus is treated as optional | Make focus an invariant | Migrate wrappers, then remove override | Every variant retains visible focus`
 
 ### Token and component plan
 
@@ -110,6 +117,8 @@ Define owners, contribution flow, release and deprecation rules, support, and ad
 - **Consolidate:** semantic tokens, component variants, documentation, parity.
 - **Adopt:** migrations, tooling, product integration, measurement.
 - **Evolve:** new patterns, multi-brand needs, experiments.
+
+**Checkpoint:** Re-check each finding against evidence, scope, confidence, migration, and acceptance criteria. Revise unsupported or unowned recommendations, then repeat until every Quality-bar item passes or is marked `Needs decision`.
 
 ## Quality bar
 
