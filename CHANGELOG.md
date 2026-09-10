@@ -1,5 +1,16 @@
 # Changelog
 
+## 2.1.1
+
+- Updated six stable UX/UI specialist skills after Tessl review and improvement passes.
+- Preserved the strongest reviewed skill content and descriptions from the approved evaluation versions.
+- Improved routing clarity across audit, dashboard redesign, design-system review, AI product design, case-study writing, and developer handoff workflows.
+- Strengthened skill descriptions with clearer triggers, boundaries, exclusions, and adjacent-skill routing.
+- Added or refined explicit validation checkpoints, feedback loops, examples, and evidence-quality expectations across the skill pack.
+- Clarified that the skills can be used with Codex, ChatGPT, Claude, and other agentic AI tools.
+- Kept `product-design` as an experimental, explicit-invocation end-to-end foundation.
+- Updated README positioning to reflect Tessl review performance and release status.
+
 ## 2.1.0-rc2
 
 - Added CI linting for skill metadata, description length, and relative `SKILL.md` links.
